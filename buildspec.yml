@@ -1,8 +1,5 @@
 version: 0.2
 phases:
-  install:
-    runtime-versions:
-      php: 7.3
   pre_build:
     commands:
       - echo Logging in to Amazon ECR....
@@ -11,8 +8,8 @@ phases:
       #- $(aws ecr get-login --region ap-south-1 --no-include-email)
       # update below 
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 679705558280.dkr.ecr.us-east-1.amazonaws.com
-      # Replace with this to your repository URI
-      - REPOSITORY_URI= 679705558280.dkr.ecr.us-east-1.amazonaws.com/awsdevopsecr
+      - # Replace with this to your repository URI
+      - REPOSITORY_URI=679705558280.dkr.ecr.us-east-1.amazonaws.com/awsecrrepo
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
     commands:
@@ -39,4 +36,3 @@ artifacts:
   files:
     - imagedefinitions.json
     - target/springboot-aws-deploy.jar
-    #
