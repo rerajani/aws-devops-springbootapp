@@ -25,7 +25,7 @@ phases:
       - echo pushing to repo
       #- docker push $REPOSITORY_URI:latest
       #- docker push $REPOSITORY_URI:$IMAGE_TAG
-      - docker push $REPOSITORY_URI:679705558280.dkr.ecr.us-east-1.amazonaws.com/awsecrrepo
+      - docker push "$IMAGE_URI"
       - echo Writing image definitions file...
       # Give your container name
       - DOCKER_CONTAINER_NAME=spring-demo-ecr
